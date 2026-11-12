@@ -1,4 +1,3 @@
-
 name: Maven Selenium Docker CI
 
 on:
