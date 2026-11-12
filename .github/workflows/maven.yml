@@ -42,4 +42,4 @@ jobs:
         if: github.event_name == 'push'
         run: |
           docker push nedit23/mavenrx:latest
-          docker push nedit23/mavenrx${{ github.sha }}
+          docker push nedit23/mavenrx:{{ github.sha }}
