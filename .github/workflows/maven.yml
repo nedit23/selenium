@@ -27,20 +27,20 @@ jobs:
         if: github.event_name == 'push'
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker Image
         run: |
-          docker build -t nedit23/mavenrx:latest .
-          docker tag nedit23/mavenrx:latest nedit23/mavenrx:${{ github.sha }}
+          docker build -t thejusnparihar/mavenrx:latest .
+          docker tag thejusnparihar/mavenrx:latest thejusnparihar/mavenrx:${{ github.sha }}
 
       - name: Run Selenium Tests
         run: |
-          docker run --rm nedit23/mavenrx:latest
+          docker run --rm thejusnparihar/mavenrx:latest
 
-      - name: Push Docker Image
+      - name: Push Docker Image with Two Tags
         if: github.event_name == 'push'
         run: |
-          docker push nedit23/mavenrx:latest
-          docker push nedit23/mavenrx:${{ github.sha }}
+          docker push thejusnparihar/mavenrx:latest
+          docker push thejusnparihar/mavenrx:${{ github.sha }}
